@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, hashHistory } from 'react-router';
+import { Link, Redirect } from 'react-router-dom';
 
 class SignupForm extends React.Component {
 	constructor(props){
@@ -10,16 +10,6 @@ class SignupForm extends React.Component {
 			password: ""
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
-	}
-
-	componentDidUpdate(){
-		this.redirectIfLoggedIn();
-	}
-
-	redirectIfLoggedIn(){
-		if (this.props.loggedIn){
-			hashHistory.push("/");
-		}
 	}
 
 	componentDidMount(){
@@ -51,27 +41,30 @@ class SignupForm extends React.Component {
 	}
 
 	render() {
+		if(this.props.loggedIn){
+			return(<Redirect to="/" />);
+		}else{
 			return (
-				<div className="signup-form-container">
-					<form onSubmit={this.handleSubmit} className="signup-form-box">
-						<h4 className="signup-greet">Welcome to Subtotal!</h4>
+				<div className="form-container">
+					<form onSubmit={this.handleSubmit} className="signup-form">
+						<h4 className="form-greet">welcome to $ubtotal!</h4>
 						<br/>
 						{ this.renderErrors() }
-						<div className="signup-form">
+						<div className="input-field">
 							<br />
 
 								<input type="text"
 									value={this.state.username}
 									onChange={this.update("username")}
 									placeholder="Username"
-									className="login-input" />
+									className="username-input" />
 							<br />
 
 								<input type="text"
 									value={this.state.email}
 									onChange={this.update("email")}
 									placeholder="E-mail"
-									className="login-input"
+									className="email-input"
 									id="email" />
 
 							<br />
@@ -79,7 +72,7 @@ class SignupForm extends React.Component {
 									value={this.state.password}
 									onChange={this.update("password")}
 									placeholder="Password"
-									className="login-input" />
+									className="password-input" />
 
 							<br />
 							<input type="submit" className="login-submit" value="Submit" />
@@ -87,6 +80,7 @@ class SignupForm extends React.Component {
 					</form>
 				</div>
 			)}
+		}
 
 }
 

@@ -7,25 +7,6 @@ export default class Greeting extends React.Component{
     super(props);
   }
 
-  openModal(key){
-    console.log("clicked");
-  }
-
-  closeModal(){
-    console.log("unclicked");
-  }
-
-  componentWillReceiveProps(){
-  }
-
-  signupHeight(path){
-    console.log(1);
-  }
-
-  loginHeight(path){
-    console.log(2);
-  }
-
   render(){
     if (this.props.currentUser){
       return(

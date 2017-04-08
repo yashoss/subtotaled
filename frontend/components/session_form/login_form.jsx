@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router';
+import { Redirect, Link } from 'react-router-dom';
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
 
 class LoginForm extends React.Component {
 	constructor(props){
@@ -11,18 +12,6 @@ class LoginForm extends React.Component {
 			password: ""
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
-	}
-
-	componentDidUpdate(){
-		console.log('update');
-		this.redirectIfLoggedIn();
-	}
-
-	redirectIfLoggedIn(){
-		console.log("redirect");
-		if (this.props.loggedIn){
-			return(<Redirect to="/" />	)
-		}
 	}
 
 	update(field){
@@ -36,33 +25,34 @@ class LoginForm extends React.Component {
 	}
 
 	render() {
-			console.log(this.props.loggedIn)
 			if (this.props.loggedIn){
-				return(<Redirect to="/" />	);
+				return(<Redirect to="/" />);
 			}else{
 				return (
-					<div className="login-form-container">
+					<div className="form-container">
 						<form onSubmit={this.handleSubmit} className="login-form-box">
-							<h4 className="login-greet">Login to $ubtotal!</h4>
+							<h4 className="form-greeting">Login to $ubtotal!</h4>
 							<br/>
-							<div className="login-form">
+							<div className="input-field">
 								<br />
 
-									<input type="text"
+									<TextField
 										value={this.state.username}
 										onChange={this.update("username")}
 										placeholder="Username"
-										className="login-input" />
+										className="username-field"
+										id="username-password"/>
 
 								<br />
-									<input type="password"
+									<TextField type="password"
 										value={this.state.password}
 										onChange={this.update("password")}
 										placeholder="Password"
-										className="login-input" />
+										className="password-field"
+										id="login-password"/>
 
 								<br />
-								<input type="submit" className="login-submit" value="Submit" />
+								<FlatButton type="submit" className="signup-submit" label="Submit" />
 							</div>
 						</form>
 					</div>
