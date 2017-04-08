@@ -29,8 +29,7 @@ class AppRouter extends React.Component{
   render(){
     return(
       <Router history={ hashHistory }>
-        <Route path="/" component={ App }>
-        </Route>
+        <App />
       </Router>
     );
   }

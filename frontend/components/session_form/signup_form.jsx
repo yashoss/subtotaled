@@ -54,7 +54,7 @@ class SignupForm extends React.Component {
 			return (
 				<div className="signup-form-container">
 					<form onSubmit={this.handleSubmit} className="signup-form-box">
-						<h4 className="signup-greet">Welcome to Striverr!</h4>
+						<h4 className="signup-greet">Welcome to Subtotal!</h4>
 						<br/>
 						{ this.renderErrors() }
 						<div className="signup-form">
