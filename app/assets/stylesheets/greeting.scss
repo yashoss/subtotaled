@@ -1,0 +1,44 @@
+.logo {
+    text-align: center;
+    font-size: 575%;
+    color: 	#1d3d81;
+    letter-spacing: 1%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.filler {
+    text-align: center;
+    font-size: 575%;
+    color: 	#1d3d81;
+    letter-spacing: 1%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.parallax {
+    background-color: #bbc2ef;
+    // background: url("https://www.omnihotels.com/-/media/images/hotels/gpirst/spa/gpirst-omni-grove-park-inn-spa.jpg?h=284&w=501&usecustomfunctions=1&centercrop=1") no-repeat fixed center;
+    background-size: cover;
+    padding: 15% 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about {
+    background-color: #bbc2ef;
+    // background: url("https://www.omnihotels.com/-/media/images/hotels/gpirst/spa/gpirst-omni-grove-park-inn-spa.jpg?h=284&w=501&usecustomfunctions=1&centercrop=1") no-repeat fixed center;
+    background-size: cover;
+    padding: 10% 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.features {
+    background: url("http://www.ci.oakley.ca.us/wp-content/uploads/2015/07/Civic-Center-Park.jpg") no-repeat fixed center;
+    padding: 15% 0;
+}
+
+.landing {
+    background-color: #039be5;
+}

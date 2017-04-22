@@ -1,0 +1,28 @@
+.input-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 100vh;
+    background-color: aliceblue;
+}
+
+.username-field {
+    margin: 10px;
+}
+
+.password-field {
+    margin: 0 10px 10px 10px;
+}
+
+.email-input {
+    margin: 0 10px 10px 10px;
+}

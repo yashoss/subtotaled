@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
 
 class SignupForm extends React.Component {
 	constructor(props){
@@ -10,6 +12,7 @@ class SignupForm extends React.Component {
 			password: ""
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.confirm_password = "";
 	}
 
 	componentDidMount(){
@@ -41,46 +44,43 @@ class SignupForm extends React.Component {
 	}
 
 	render() {
-		if(this.props.loggedIn){
+		if (this.props.loggedIn){
 			return(<Redirect to="/" />);
 		}else{
 			return (
 				<div className="form-container">
 					<form onSubmit={this.handleSubmit} className="signup-form">
-						<h4 className="form-greet">welcome to $ubtotal!</h4>
-						<br/>
-						{ this.renderErrors() }
+						<h4 className="form-greeting">Register for SUBTOTAL!</h4>
 						<div className="input-field">
-							<br />
 
-								<input type="text"
+								<TextField
 									value={this.state.username}
 									onChange={this.update("username")}
 									placeholder="Username"
-									className="username-input" />
-							<br />
+									className="username-field"
+									id="username-password"/>
 
-								<input type="text"
+								<TextField
 									value={this.state.email}
 									onChange={this.update("email")}
 									placeholder="E-mail"
 									className="email-input"
 									id="email" />
 
-							<br />
-								<input type="password"
+								<TextField type="password"
 									value={this.state.password}
 									onChange={this.update("password")}
 									placeholder="Password"
-									className="password-input" />
+									className="password-field"
+									id="login-password" />
 
-							<br />
-							<input type="submit" className="login-submit" value="Submit" />
+							<FlatButton type="submit" className="login-submit" label="Submit" />
 						</div>
 					</form>
 				</div>
 			)}
 		}
+
 
 }
 

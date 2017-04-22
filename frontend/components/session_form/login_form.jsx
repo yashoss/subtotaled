@@ -31,10 +31,8 @@ class LoginForm extends React.Component {
 				return (
 					<div className="form-container">
 						<form onSubmit={this.handleSubmit} className="login-form-box">
-							<h4 className="form-greeting">Login to $ubtotal!</h4>
-							<br/>
+							<h4 className="form-greeting">Login to SUBTOTAL!</h4>
 							<div className="input-field">
-								<br />
 
 									<TextField
 										value={this.state.username}
@@ -43,7 +41,6 @@ class LoginForm extends React.Component {
 										className="username-field"
 										id="username-password"/>
 
-								<br />
 									<TextField type="password"
 										value={this.state.password}
 										onChange={this.update("password")}
@@ -51,7 +48,6 @@ class LoginForm extends React.Component {
 										className="password-field"
 										id="login-password"/>
 
-								<br />
 								<FlatButton type="submit" className="signup-submit" label="Submit" />
 							</div>
 						</form>
