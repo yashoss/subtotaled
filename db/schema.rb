@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20170422214444) do
   enable_extension "plpgsql"
 
   create_table "registers", force: :cascade do |t|
+    t.integer  "user_id",         null: false
     t.string   "name",            null: false
     t.float    "price",           null: false
     t.string   "img_url"

@@ -1,6 +1,7 @@
 class CreateRegisters < ActiveRecord::Migration
   def change
     create_table :registers do |t|
+      t.integer :user_id, null: false
       t.string :name, null: false
       t.float :price, null: false
       t.string :img_url

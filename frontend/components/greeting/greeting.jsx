@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -14,14 +14,7 @@ export default class Greeting extends React.Component{
   render(){
     if (this.props.currentUser){
       return(
-        <div key="greetings">
-          <hgroup key="hgroup2" className="header-group">
-            <div key="hname2" className="hname2">
-              <div className="header-name">{this.props.currentUser.username}'s' Register!</div>
-              <a key="getout" href="" className="logout" onClick={this.props.logout.bind(this)}>Log Out</a>
-            </div>
-          </hgroup>
-        </div>
+        <Redirect to={`/users/${this.props.currentUser.id}`} />
       )
 
     } else {

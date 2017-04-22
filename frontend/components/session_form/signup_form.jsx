@@ -44,8 +44,8 @@ class SignupForm extends React.Component {
 	}
 
 	render() {
-		if (this.props.loggedIn){
-			return(<Redirect to="/" />);
+		if (this.props.currentUser){
+			return(<Redirect to={`/users/${this.props.currentUser.id}`} />);
 		}else{
 			return (
 				<div className="form-container">

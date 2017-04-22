@@ -6,24 +6,6 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 class AppRouter extends React.Component{
   constructor(props){
     super(props);
-    this._ensureLoggedIn = this._ensureLoggedIn.bind(this);
-    this._redirectIfLoggedIn = this._redirectIfLoggedIn.bind(this);
-  }
-
-  _ensureLoggedIn(nextState, replace){
-    const currentState = this.context.store.getState();
-    const currentUser = currentState.session.currentUser;
-    if (!currentUser) {
-      replace('/login');
-    }
-  }
-
-  _redirectIfLoggedIn(nextState, replace){
-    const currentState = this.context.store.getState();
-    const currentUser = currentState.session.currentUser;
-    if (currentUser) {
-      replace('/');
-    }
   }
 
   render(){

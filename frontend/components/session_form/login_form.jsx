@@ -25,8 +25,9 @@ class LoginForm extends React.Component {
 	}
 
 	render() {
-			if (this.props.loggedIn){
-				return(<Redirect to="/" />);
+			if (this.props.currentUser){
+				let newRoute = `/users/${this.props.currentUser.id}`;
+				return(<Redirect to={`/users/${this.props.currentUser.id}`} />);
 			}else{
 				return (
 					<div className="form-container">
