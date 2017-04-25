@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class LoginForm extends React.Component {
 	constructor(props){
@@ -49,7 +49,7 @@ class LoginForm extends React.Component {
 										className="password-field"
 										id="login-password"/>
 
-								<FlatButton type="submit" className="signup-submit" label="Submit" />
+								<RaisedButton primary={true} type="submit" className="signup-submit" label="Submit" />
 							</div>
 						</form>
 					</div>

@@ -29,6 +29,7 @@ class Api::RegisterController < ApplicationController
 
   def register_params
     params.require(:gig).permit(
+      :user_id,
       :name,
       :price,
       :img_url,
