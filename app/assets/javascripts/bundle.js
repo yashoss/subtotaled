@@ -15818,6 +15818,7 @@ var Greeting = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var test = JSON.stringify(this.props.register);
       if (!this.props.currentUser) {
         return _react2.default.createElement(_reactRouterDom.Redirect, { to: '/' });
       } else {
@@ -15844,7 +15845,7 @@ var Greeting = function (_React$Component) {
           _react2.default.createElement(
             'div',
             null,
-            this.props.register
+            test
           )
         );
       }
@@ -44131,9 +44132,31 @@ module.exports = function() {
 
 /***/ }),
 /* 566 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: Unexpected token (2:19)\n\n\u001b[0m \u001b[90m 1 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m \u001b[33mConstants\u001b[39m \u001b[33m=\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 2 | \u001b[39m  \u001b[33mREQUEST_REGISTER\u001b[39m \u001b[33m=\u001b[39m \u001b[32m\"REQUEST_REGISTER\"\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m   | \u001b[39m                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 3 | \u001b[39m  \u001b[33mRECEIVE_REGISTER\u001b[39m \u001b[33m=\u001b[39m \u001b[32m\"RECEIVE_REGISTER\"\u001b[39m\n \u001b[90m 4 | \u001b[39m}\u001b[33m;\u001b[39m\n \u001b[90m 5 | \u001b[39m\u001b[0m\n");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var Constants = exports.Constants = {
+  REQUEST_REGISTER: "REQUEST_REGISTER",
+  RECEIVE_REGISTER: "RECEIVE_REGISTER"
+};
+
+var requestRegister = exports.requestRegister = function requestRegister() {
+  return {
+    type: Constants.REQUEST_REGISTER
+  };
+};
+
+var receiveRegister = exports.receiveRegister = function receiveRegister(register) {
+  return {
+    type: Constants.RECEIVE_REGISTER,
+    register: register
+  };
+};
 
 /***/ }),
 /* 567 */
@@ -44158,7 +44181,7 @@ var MainMiddleware = function MainMiddleware(_ref) {
       switch (action.type) {
         case _main_actions.Constants.REQUEST_REGISTER:
           var success = function success(data) {
-            return dispatch(requestRegister(data));
+            return dispatch((0, _main_actions.receiveRegister)(data));
           };
           (0, _main_api_util.fetchRegister)(success);
           return next(action);

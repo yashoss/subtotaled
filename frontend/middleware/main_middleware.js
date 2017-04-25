@@ -4,7 +4,7 @@ import { fetchRegister } from '../util/main_api_util';
 const MainMiddleware = ({getState, dispatch}) => next => action => {
   switch(action.type){
     case Constants.REQUEST_REGISTER:
-      const success = data => dispatch(requestRegister(data));
+      const success = data => dispatch(receiveRegister(data));
       fetchRegister(success);
       return next(action);
     default:

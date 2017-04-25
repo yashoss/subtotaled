@@ -15,6 +15,7 @@ export default class Greeting extends React.Component{
   }
 
   render(){
+    let test = JSON.stringify(this.props.register);
     if (!this.props.currentUser){
       return(
         <Redirect to="/" />
@@ -25,7 +26,7 @@ export default class Greeting extends React.Component{
           <h1>Register page</h1>
           <div className="header-name">{this.props.currentUser.username}'s' Register! {this.props.currentUser.id}</div>
           <a key="getout" href="" className="logout" onClick={this.props.logout.bind(this)}>Log Out</a>
-          <div>{this.props.register}</div>
+          <div>{test}</div>
         </div>
       );
     }

@@ -5,18 +5,12 @@ class Api::RegisterController < ApplicationController
   end
 
   def index
-    # if(params[:category] == nil || params[:category] == "all")
-    #   @gigs = Gig.includes(:user, :reviews).all
-    # elsif (params[:category] == "gaming" || params[:category] == "design" || params[:category] == "web-dev" || params[:category] == "art" || params[:category] == "writing")
-    #   @gigs = Gig.where(category: params[:category]).includes(:user, :reviews)
-    # else
-    #   @gigs = Gig.where('lower(title) Like ?', "%#{params[:category].downcase}%").includes(:user, :reviews)
-    # end
+    @register = Register.where(user_id: current_user).all
     render :index
   end
 
   def update
-    @item = Register.update(params[:id], gig_params)
+    @item = Register.update(params[:id], register_params)
     render json: {}
   end
 
@@ -33,7 +27,7 @@ class Api::RegisterController < ApplicationController
 
   private
 
-  def gig_params
+  def register_params
     params.require(:gig).permit(
       :name,
       :price,
@@ -43,5 +37,5 @@ class Api::RegisterController < ApplicationController
       :inventory_count
     )
   end
-  
+
 end
