@@ -7,6 +7,10 @@ const MainMiddleware = ({getState, dispatch}) => next => action => {
       const success = data => dispatch(receiveRegister(data));
       fetchRegister(success);
       return next(action);
+    case Constants.ADD_ITEM:
+      const success = data => dispatch(receiveRegister(date));
+      fetchRegister(success);
+      return next(action);
     default:
       return next(action);
   }

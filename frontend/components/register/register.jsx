@@ -21,11 +21,7 @@ export default class Register extends React.Component{
   }
 
   closeDailog(buttonClicked){
-    if(buttonClicked){
-
-    }else{
       this.setState({open: false});
-    }
   }
 
   render(){
