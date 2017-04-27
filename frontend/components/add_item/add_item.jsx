@@ -18,7 +18,7 @@ export default class AddItem extends React.Component{
       inventory_count: null
     }
 
-    this.price = "$"
+    this.decimal = false;
   }
 
   update(property){
@@ -26,8 +26,21 @@ export default class AddItem extends React.Component{
   }
 
   updatePrice(){
-    return e => {
-      toString(this.state.price)
+    return e =>{
+      let length = this.state.price.length;
+      if (e.key.charCodeAt(0) === 66 && length > 0){
+        if(this.state.price[length - 1]){
+          this.decimal = false;
+        }
+        this.setState({price: this.state.price.substring(0, length - 1)});
+      }else if (e.key.charCodeAt(0) !== 47 && e.key.charCodeAt(0) >= 46 && e.key.charCodeAt(0) <= 57 && length < 12){
+        if(!this.decimal || (e.key !== "." && this.state.price[length - 3] !== ".")){
+          if(e.key === "."){
+            this.decimal = true;
+          }
+          this.setState({price: this.state.price + e.key});
+        }
+      }
     }
   }
 
@@ -41,9 +54,13 @@ export default class AddItem extends React.Component{
             placeholder="Name"
             className="username-field" />
 
-            <TextField
-              value={this.price}
-              onChange={this.updatePrice} />
+
+            <div>$<TextField
+              value={this.state.price}
+              onKeyDown={this.updatePrice()}
+              placeholder="00.00"
+              className="username-field" />
+            </div>
 
             <TextField
               value={this.state.img_url}
