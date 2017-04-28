@@ -10,6 +10,7 @@ export default class AddItem extends React.Component{
   constructor(props, {currentUser}){
     super(props);
     this.state = {
+      user_id: this.props.currentUser.id,
       name: "",
       price: "",
       img_url: "",
@@ -17,8 +18,8 @@ export default class AddItem extends React.Component{
       item_num: "",
       inventory_count: ""
     }
-
     this.decimal = false;
+    this.handleSave = this.handleSave.bind(this);
   }
 
   update(property){
@@ -46,13 +47,13 @@ export default class AddItem extends React.Component{
     }
   }
 
-  addItem(){
-    this.props.addItem(this.state);
+  handleSave(){
+    this.props.addItem({item: this.state});
   }
 
   render(){
       const actions = [
-        <FlatButton label="Save" keyboardFocused={true} onTouchTap={() => console.log("Saved")}/>,
+        <FlatButton label="Save" keyboardFocused={true} onTouchTap={this.handleSave} />,
         <FlatButton label="Cancel" onTouchTap={this.props.close}/>
       ]
       return(

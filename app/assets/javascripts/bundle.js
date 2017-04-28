@@ -6733,7 +6733,8 @@ Object.defineProperty(exports, "__esModule", {
 var Constants = exports.Constants = {
   REQUEST_REGISTER: "REQUEST_REGISTER",
   RECEIVE_REGISTER: "RECEIVE_REGISTER",
-  ADD_ITEM: "ADD_ITEM"
+  ADD_ITEM: "ADD_ITEM",
+  RECEIVE_ITEM: "RECEIVE_ITEM"
 };
 
 var requestRegister = exports.requestRegister = function requestRegister() {
@@ -6752,7 +6753,14 @@ var receiveRegister = exports.receiveRegister = function receiveRegister(registe
 var addItem = exports.addItem = function addItem(item) {
   return {
     type: Constants.ADD_ITEM,
-    register: register
+    item: item
+  };
+};
+
+var receiveItem = exports.receiveItem = function receiveItem(item) {
+  return {
+    type: Constants.RECEIVE_ITEM,
+    item: item
   };
 };
 
@@ -15681,6 +15689,7 @@ var AddItem = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (AddItem.__proto__ || Object.getPrototypeOf(AddItem)).call(this, props));
 
     _this.state = {
+      user_id: _this.props.currentUser.id,
       name: "",
       price: "",
       img_url: "",
@@ -15688,8 +15697,8 @@ var AddItem = function (_React$Component) {
       item_num: "",
       inventory_count: ""
     };
-
     _this.decimal = false;
+    _this.handleSave = _this.handleSave.bind(_this);
     return _this;
   }
 
@@ -15725,16 +15734,14 @@ var AddItem = function (_React$Component) {
       };
     }
   }, {
-    key: 'addItem',
-    value: function addItem() {
-      this.props.addItem(this.state);
+    key: 'handleSave',
+    value: function handleSave() {
+      this.props.addItem({ item: this.state });
     }
   }, {
     key: 'render',
     value: function render() {
-      var actions = [_react2.default.createElement(_FlatButton2.default, { label: 'Save', keyboardFocused: true, onTouchTap: function onTouchTap() {
-          return console.log("Saved");
-        } }), _react2.default.createElement(_FlatButton2.default, { label: 'Cancel', onTouchTap: this.props.close })];
+      var actions = [_react2.default.createElement(_FlatButton2.default, { label: 'Save', keyboardFocused: true, onTouchTap: this.handleSave }), _react2.default.createElement(_FlatButton2.default, { label: 'Cancel', onTouchTap: this.props.close })];
       return _react2.default.createElement(
         _Dialog2.default,
         { open: this.props.open, modal: true, onRequestClose: this.props.close, actions: actions },
@@ -15808,6 +15815,8 @@ var _add_item = __webpack_require__(226);
 
 var _add_item2 = _interopRequireDefault(_add_item);
 
+var _main_actions = __webpack_require__(87);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -15817,7 +15826,11 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
-  return {};
+  return {
+    addItem: function addItem(item) {
+      return dispatch((0, _main_actions.addItem)(item));
+    }
+  };
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_add_item2.default);
@@ -16111,7 +16124,7 @@ var Register = function (_React$Component) {
 
     _this.state = { open: false };
     _this.addItem = _this.addItem.bind(_this);
-    _this.closeDailog = _this.closeDailog.bind(_this);
+    _this.closeDialog = _this.closeDialog.bind(_this);
     return _this;
   }
 
@@ -16126,8 +16139,8 @@ var Register = function (_React$Component) {
       this.setState({ open: true });
     }
   }, {
-    key: 'closeDailog',
-    value: function closeDailog(buttonClicked) {
+    key: 'closeDialog',
+    value: function closeDialog(buttonClicked) {
       this.setState({ open: false });
     }
   }, {
@@ -16163,7 +16176,7 @@ var Register = function (_React$Component) {
             test
           ),
           _react2.default.createElement(_RaisedButton2.default, { label: '+', onTouchTap: this.addItem }),
-          _react2.default.createElement(_add_item_container2.default, { open: this.state.open, close: this.closeDailog })
+          _react2.default.createElement(_add_item_container2.default, { open: this.state.open, close: this.closeDialog })
         );
       }
     }
@@ -16629,10 +16642,45 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 /* 238 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-throw new Error("Module build failed: Duplicate declaration \"success\"\n\n\u001b[0m \u001b[90m  9 | \u001b[39m      \u001b[36mreturn\u001b[39m next(action)\u001b[33m;\u001b[39m\n \u001b[90m 10 | \u001b[39m    \u001b[36mcase\u001b[39m \u001b[33mConstants\u001b[39m\u001b[33m.\u001b[39m\u001b[33mADD_ITEM\u001b[39m\u001b[33m:\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 | \u001b[39m      \u001b[36mconst\u001b[39m success \u001b[33m=\u001b[39m data \u001b[33m=>\u001b[39m dispatch(receiveRegister(date))\u001b[33m;\u001b[39m\n \u001b[90m    | \u001b[39m            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 | \u001b[39m      fetchRegister(success)\u001b[33m;\u001b[39m\n \u001b[90m 13 | \u001b[39m      \u001b[36mreturn\u001b[39m next(action)\u001b[33m;\u001b[39m\n \u001b[90m 14 | \u001b[39m    \u001b[36mdefault\u001b[39m\u001b[33m:\u001b[39m\u001b[0m\n");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _main_actions = __webpack_require__(87);
+
+var _main_api_util = __webpack_require__(245);
+
+var MainMiddleware = function MainMiddleware(_ref) {
+  var getState = _ref.getState,
+      dispatch = _ref.dispatch;
+  return function (next) {
+    return function (action) {
+      switch (action.type) {
+        case _main_actions.Constants.REQUEST_REGISTER:
+          var success = function success(data) {
+            return dispatch((0, _main_actions.receiveRegister)(data));
+          };
+          (0, _main_api_util.fetchRegister)(success);
+          return next(action);
+        case _main_actions.Constants.ADD_ITEM:
+          var successAdd = function successAdd(data) {
+            return dispatch((0, _main_actions.receiveItem)(data));
+          };
+          (0, _main_api_util.saveItem)(action.item, successAdd);
+          return next(action);
+        default:
+          return next(action);
+      }
+    };
+  };
+};
+
+exports.default = MainMiddleware;
 
 /***/ }),
 /* 239 */
@@ -16733,6 +16781,8 @@ var MainReducer = function MainReducer() {
   switch (action.type) {
     case _main_actions.Constants.RECEIVE_REGISTER:
       return (0, _merge2.default)({}, state, action.register);
+    case _main_actions.Constants.RECEIVE_ITEM:
+      return (0, _merge2.default)({}, state, action.item);
     default:
       return state;
   }
@@ -16858,7 +16908,36 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /***/ }),
-/* 245 */,
+/* 245 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var fetchRegister = exports.fetchRegister = function fetchRegister(success) {
+  $.ajax({
+    method: "GET",
+    url: "/api/register",
+    success: success,
+    error: function error() {
+      return console.log('error');
+    }
+  });
+};
+
+var saveItem = exports.saveItem = function saveItem(item, success) {
+  $.ajax({
+    method: 'POST',
+    url: '/api/register',
+    data: item,
+    success: success
+  });
+};
+
+/***/ }),
 /* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 

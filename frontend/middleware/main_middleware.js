@@ -1,5 +1,5 @@
-import { Constants, receiveRegister } from '../actions/main_actions';
-import { fetchRegister } from '../util/main_api_util';
+import { Constants, receiveRegister, receiveItem} from '../actions/main_actions';
+import { fetchRegister, saveItem } from '../util/main_api_util';
 
 const MainMiddleware = ({getState, dispatch}) => next => action => {
   switch(action.type){
@@ -8,8 +8,8 @@ const MainMiddleware = ({getState, dispatch}) => next => action => {
       fetchRegister(success);
       return next(action);
     case Constants.ADD_ITEM:
-      const success = data => dispatch(receiveRegister(date));
-      fetchRegister(success);
+      const successAdd = data => dispatch(receiveItem(data));
+      saveItem(action.item, successAdd);
       return next(action);
     default:
       return next(action);

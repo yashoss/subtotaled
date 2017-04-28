@@ -6,3 +6,12 @@ export const fetchRegister = function(success){
     error: () => console.log('error')
   })
 }
+
+export const saveItem = (item, success) => {
+  $.ajax({
+    method: 'POST',
+    url: '/api/register',
+    data: item,
+    success
+  });
+};

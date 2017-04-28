@@ -9,7 +9,7 @@ export default class Register extends React.Component{
     super(props);
     this.state = { open: false };
     this.addItem = this.addItem.bind(this);
-    this.closeDailog = this.closeDailog.bind(this);
+    this.closeDialog = this.closeDialog.bind(this);
   }
 
   componentDidMount(){
@@ -20,7 +20,7 @@ export default class Register extends React.Component{
     this.setState({open: true});
   }
 
-  closeDailog(buttonClicked){
+  closeDialog(buttonClicked){
       this.setState({open: false});
   }
 
@@ -38,7 +38,7 @@ export default class Register extends React.Component{
           <a key="getout" href="" className="logout" onClick={this.props.logout.bind(this)}>Log Out</a>
           <div>{test}</div>
           <RaisedButton label="+" onTouchTap={this.addItem} />
-          <RegisterContainer open={this.state.open} close={this.closeDailog} />
+          <RegisterContainer open={this.state.open} close={this.closeDialog} />
         </div>
       );
     }

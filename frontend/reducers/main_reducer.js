@@ -5,6 +5,8 @@ const MainReducer = function(state = {}, action){
   switch(action.type){
     case Constants.RECEIVE_REGISTER:
       return merge({}, state, action.register)
+    case Constants.RECEIVE_ITEM:
+      return merge({}, state, action.item);
     default:
       return state;
   }
