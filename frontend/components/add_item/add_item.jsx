@@ -62,6 +62,7 @@ export default class AddItem extends React.Component{
           *<TextField
             value={this.state.name}
             onChange={this.update("name")}
+            id="name"
             placeholder="Name"
             className="username-field" />
 
@@ -69,6 +70,7 @@ export default class AddItem extends React.Component{
             <div>*$<TextField
               value={this.state.price}
               onKeyDown={this.updatePrice()}
+              id="price"
               placeholder="00.00"
               className="username-field" />
             </div>
@@ -77,26 +79,30 @@ export default class AddItem extends React.Component{
                 value={this.state.item_num}
                 onChange={this.update("item_num")}
                 placeholder="Item #"
+                id="item_num"
                 type="number"
                 className="username-field" />
 
               <TextField
                 value={this.state.inventory_count}
                 onChange={this.update("inventory_count")}
+                id="inventory_count"
                 placeholder="Inventory Count"
                 type="number"
                 className="username-field" />
 
               <TextField
                 value={this.state.img_url}
-                onKeyDown={this.update("img_url")}
+                onChange={this.update("img_url")}
                 placeholder="Image URL"
+                id="img_url"
                 className="username-field" />
 
               <TextField
                 value={this.state.description}
                 onChange={this.update("description")}
                 placeholder="Description"
+                id="description"
                 multiLine={true}
                 className="username-field" />
 
