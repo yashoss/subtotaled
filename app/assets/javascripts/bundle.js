@@ -16565,13 +16565,14 @@ var Register = function (_React$Component) {
       var r = this.props.register;
       var items = [];
       for (var i in r) {
+        var img_url = r[i].img_url || "http://www.alt-codes.net/images/dollar-sign.png";
         items.push(_react2.default.createElement(
           'div',
           { key: "item-" + i, className: 'col-sm-4 col-md-3' },
           _react2.default.createElement(
             'div',
             { className: 'thumbnail' },
-            _react2.default.createElement('img', { src: r[i].img_url, alt: r[i].name }),
+            _react2.default.createElement('img', { src: img_url, alt: r[i].name, className: 'img-fluid register-img' }),
             _react2.default.createElement(
               'div',
               { className: 'caption' },
@@ -16643,7 +16644,7 @@ var Register = function (_React$Component) {
             null,
             this.items
           ),
-          _react2.default.createElement(_RaisedButton2.default, { label: '+', onTouchTap: this.addItem, className: 'addBtn' }),
+          _react2.default.createElement(_RaisedButton2.default, { label: '+', onTouchTap: this.addItem, className: 'col-sm-4 col-md-3 add-btn' }),
           _react2.default.createElement(_add_item_container2.default, { open: this.state.open, close: this.closeDialog })
         );
       }
