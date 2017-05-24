@@ -13,7 +13,7 @@ export default class Register extends React.Component{
     this.items = [];
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.props.requestRegister();
   }
 
@@ -25,13 +25,17 @@ export default class Register extends React.Component{
       this.setState({open: false});
   }
 
+  deleteItem(id){
+    this.props.deleteItem(id);
+  }
+
   formatRegister(){
     let r = this.props.register;
     let items = [];
     for(let i in r){
       let img_url = r[i].img_url || "http://www.alt-codes.net/images/dollar-sign.png";
       items.push(
-        <div key={"item-"+i} className="col-sm-4 col-md-3">
+        <div key={"item-"+i} className="col-sm-4 col-md-2 .col-lg-2">
           <div className="thumbnail">
             <img src={img_url} alt={r[i].name} className="img-fluid register-img"></img>
             <div className="caption">
@@ -40,7 +44,7 @@ export default class Register extends React.Component{
               <p>
                 <a href="#" className="btn btn-primary" role="button">Edit</a>
                 <a href="#" className="btn btn-default" role="button">Discount</a>
-                <a href="#" className="btn btn-default" role="button">Del</a>
+                <a onClick={this.deleteItem.bind(this, i)} className="btn btn-default" role="button">Del</a>
               </p>
             </div>
           </div>
@@ -62,7 +66,7 @@ export default class Register extends React.Component{
           <div className="header-name">{this.props.currentUser.username}'s' Register! {this.props.currentUser.id}</div>
           <a key="getout" href="" className="logout" onClick={this.props.logout.bind(this)}>Log Out</a>
           <div>{this.items}</div>
-          <RaisedButton label="+" onTouchTap={this.addItem} className="col-sm-4 col-md-3 add-btn"/>
+          <RaisedButton label="+" onTouchTap={this.addItem} className="col-sm-4 col-md-2 .col-lg-2 add-btn"/>
           <RegisterContainer open={this.state.open} close={this.closeDialog} />
         </div>
       );

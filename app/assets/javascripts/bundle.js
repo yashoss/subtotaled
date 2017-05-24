@@ -4742,7 +4742,9 @@ var Constants = exports.Constants = {
   REQUEST_REGISTER: "REQUEST_REGISTER",
   RECEIVE_REGISTER: "RECEIVE_REGISTER",
   ADD_ITEM: "ADD_ITEM",
-  RECEIVE_ITEM: "RECEIVE_ITEM"
+  RECEIVE_ITEM: "RECEIVE_ITEM",
+  DELETE_ITEM: "DELETE_ITEM",
+  REPLACE_REGISTER: "REPLACE_REGISTER"
 };
 
 var requestRegister = exports.requestRegister = function requestRegister() {
@@ -4769,6 +4771,20 @@ var receiveItem = exports.receiveItem = function receiveItem(item) {
   return {
     type: Constants.RECEIVE_ITEM,
     item: item
+  };
+};
+
+var deleteItem = exports.deleteItem = function deleteItem(id) {
+  return {
+    type: Constants.DELETE_ITEM,
+    id: id
+  };
+};
+
+var replaceRegister = exports.replaceRegister = function replaceRegister(register) {
+  return {
+    type: Constants.REPLACE_REGISTER,
+    register: register
   };
 };
 
@@ -16545,8 +16561,8 @@ var Register = function (_React$Component) {
   }
 
   _createClass(Register, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
       this.props.requestRegister();
     }
   }, {
@@ -16560,6 +16576,11 @@ var Register = function (_React$Component) {
       this.setState({ open: false });
     }
   }, {
+    key: 'deleteItem',
+    value: function deleteItem(id) {
+      this.props.deleteItem(id);
+    }
+  }, {
     key: 'formatRegister',
     value: function formatRegister() {
       var r = this.props.register;
@@ -16568,7 +16589,7 @@ var Register = function (_React$Component) {
         var img_url = r[i].img_url || "http://www.alt-codes.net/images/dollar-sign.png";
         items.push(_react2.default.createElement(
           'div',
-          { key: "item-" + i, className: 'col-sm-4 col-md-3' },
+          { key: "item-" + i, className: 'col-sm-4 col-md-2 .col-lg-2' },
           _react2.default.createElement(
             'div',
             { className: 'thumbnail' },
@@ -16602,7 +16623,7 @@ var Register = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                   'a',
-                  { href: '#', className: 'btn btn-default', role: 'button' },
+                  { onClick: this.deleteItem.bind(this, i), className: 'btn btn-default', role: 'button' },
                   'Del'
                 )
               )
@@ -16644,7 +16665,7 @@ var Register = function (_React$Component) {
             null,
             this.items
           ),
-          _react2.default.createElement(_RaisedButton2.default, { label: '+', onTouchTap: this.addItem, className: 'col-sm-4 col-md-3 add-btn' }),
+          _react2.default.createElement(_RaisedButton2.default, { label: '+', onTouchTap: this.addItem, className: 'col-sm-4 col-md-2 .col-lg-2 add-btn' }),
           _react2.default.createElement(_add_item_container2.default, { open: this.state.open, close: this.closeDialog })
         );
       }
@@ -16693,6 +16714,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     },
     requestRegister: function requestRegister() {
       return dispatch((0, _main_actions.requestRegister)());
+    },
+    deleteItem: function deleteItem(id) {
+      return dispatch((0, _main_actions.deleteItem)(id));
     }
   };
 };
@@ -17142,6 +17166,12 @@ var MainMiddleware = function MainMiddleware(_ref) {
           };
           (0, _main_api_util.saveItem)(action.item, successAdd);
           return next(action);
+        case _main_actions.Constants.DELETE_ITEM:
+          var successDel = function successDel(data) {
+            return dispatch((0, _main_actions.replaceRegister)(data));
+          };
+          (0, _main_api_util.removeItem)(action.id, successDel);
+          return next(action);
         default:
           return next(action);
       }
@@ -17252,6 +17282,8 @@ var MainReducer = function MainReducer() {
       return (0, _merge2.default)({}, state, action.register);
     case _main_actions.Constants.RECEIVE_ITEM:
       return (0, _merge2.default)({}, state, action.item);
+    case _main_actions.Constants.REPLACE_REGISTER:
+      return action.register;
     default:
       return state;
   }
@@ -17402,6 +17434,14 @@ var saveItem = exports.saveItem = function saveItem(item, success) {
     method: 'POST',
     url: '/api/register',
     data: item,
+    success: success
+  });
+};
+
+var removeItem = exports.removeItem = function removeItem(id, success) {
+  $.ajax({
+    method: 'DELETE',
+    url: "/api/register/" + id,
     success: success
   });
 };

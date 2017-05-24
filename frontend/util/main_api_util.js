@@ -15,3 +15,11 @@ export const saveItem = (item, success) => {
     success
   });
 };
+
+export const removeItem = (id, success) => {
+  $.ajax({
+    method: 'DELETE',
+    url: `/api/register/${id}`,
+    success
+  })
+}

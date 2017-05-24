@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import Register from './register';
-import { requestRegister } from '../../actions/main_actions'
+import { requestRegister, deleteItem } from '../../actions/main_actions';
 
 
 const mapStateToProps = state => ({
@@ -12,7 +12,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     logout: () => dispatch(logout()),
-    requestRegister: () => dispatch(requestRegister())
+    requestRegister: () => dispatch(requestRegister()),
+    deleteItem: (id) => dispatch(deleteItem(id))
   };
 };
 

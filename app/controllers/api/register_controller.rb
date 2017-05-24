@@ -20,8 +20,10 @@ class Api::RegisterController < ApplicationController
 
   def destroy
     @item = Register.find(params[:id])
+    user_id = @item.user_id
     @item.destroy
-    render json: {}
+    @register = Register.where(user_id: user_id).all
+    render :index
   end
 
   def show
